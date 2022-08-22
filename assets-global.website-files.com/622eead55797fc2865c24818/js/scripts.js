@@ -16,12 +16,24 @@ galleryToastBtn.addEventListener('click', e => {
 });
 
 // bg Music
-window.addEventListener('DOMContentLoaded', event => {
+window.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('bgMusic')) {
     const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 0.5;
     bgMusic.play();
+    bgMusic.mute = false;
+    bgMusic.volume = 0.5;
   }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.addEventListener('touchstart', function () {
+    if (document.getElementById('bgMusic')) {
+      const bgMusic = document.getElementById('bgMusic');
+      bgMusic.play();
+      bgMusic.mute = false;
+      bgMusic.volume = 0.5;
+    }
+  });
 });
 
 /**
@@ -58,7 +70,7 @@ jQuery(function () {
   const prevTrack = document.getElementById('prevTrack');
   const nextTrack = document.getElementById('nextTrack');
 
-  if(prevTrack && nextTrack) {
+  if (prevTrack && nextTrack) {
     const changeTrack = () => {
       if (audio.getAttribute('src') === musicOne) {
         audio.setAttribute('src', musicTwo);
@@ -71,7 +83,7 @@ jQuery(function () {
     prevTrack.addEventListener('click', () => {
       changeTrack();
     });
-  
+
     nextTrack.addEventListener('click', () => {
       changeTrack();
     })
@@ -82,7 +94,7 @@ jQuery(function () {
     soundPause.addEventListener('click', player);
   }
 
-  function player () {
+  function player() {
     if (soundPauseBtn.getAttribute('d') === soundPauseIcon) {
       soundPauseBtn.setAttribute('d', soundPlayIcon);
       playIcon.classList.remove('playingicon');
